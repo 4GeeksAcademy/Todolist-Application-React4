@@ -7,28 +7,37 @@ import React, { useState } from "react";
 const Home = () => {
 	//Se identifica 2 estados 
 	const[inputValue,setInputValue]=useState("");
-	const[todos,setTodos]=useState(["estudiar", "lavar", "limpiar"]);
+	const[todos,setTodos]=useState([]);
 
 	return (
-		<div className="text-center w-50">
+		<div className="container text-center w-50 text">
 			<h1 className="text-center mt-5">todo</h1>
 			<ul class="list-group">
 				<li className="list-group-item">
-					<input type="text" className="form-control" placeholder="What needs to be done"
+					<input type="text" className="form-control  border-0" placeholder="What needs to be done?"
 					onChange={e => setInputValue(e.target.value)}
 					value={inputValue}
+					//evento para las tareas se agregen cuando el usuario presiona enter en el teclado
 					onKeyDown={(e)=>{
+						// si La tecla Enter fue presionada  y si después de eliminar los espacios en blanco, el texto no esta vacío ->ejecutar lo sgte
 						if (e.key==="Enter"&& inputValue.trim() !== ""){
 							setTodos(todos.concat([inputValue]));
 							setInputValue("");
 						};
 					}}/>
 				</li>
-				{todos.map((t,index)=>(
-					<li key={index} className="list-group-item">{t}<i class="fas fa-trash-alt"></i></li>
-				))}
+				{todos.length === 0 ? (
+					<li className="list-group-item text-center">No hay tareas, añadir tareas</li>
+				) : (
+					todos.map((t, index) => (
+						<li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+							{t}
+							<i className="fas fa-trash-alt delete-icon"></i>
+						</li>
+					))
+				)}
 			</ul>
-			<div>{todos.length}</div>
+			<div className="text-start">{todos.length}items</div>
 		</div>
 	);
 };
