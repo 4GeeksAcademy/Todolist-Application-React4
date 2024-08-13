@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-// //include images into your bundle
-// import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
 const Home = () => {
@@ -29,15 +27,15 @@ const Home = () => {
 				{todos.length === 0 ? (
 					<li className="list-group-item text-center">No hay tareas, añadir tareas</li>
 				) : (
-					todos.map((t, index) => (
+					todos.map((item, index) => (
 						<li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-							{t}
-							<i className="fas fa-trash-alt delete-icon"></i>
+							{item}
+							<i className="fas fa-trash-alt icon" onClick={()=>setTodos(todos.filter((t,currentIndex)=> index!=currentIndex))}></i>
 						</li>
 					))
 				)}
 			</ul>
-			<div className="text-start">{todos.length}items</div>
+			<div className="text-start">{todos.length} items</div>
 		</div>
 	);
 };
