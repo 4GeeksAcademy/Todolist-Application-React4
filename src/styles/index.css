@@ -1,8 +1,14 @@
 body{
-    background-color: fuchsia;
+    background-color: rgb(243, 162, 218);
 }
 .icon{
     display: none;
+    font-size: 0.6em;
+}
+
+h1{
+    color:deeppink;
+    font-size: 6em;
 }
 
 .list-group-item:hover .icon{

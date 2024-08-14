@@ -8,11 +8,11 @@ const Home = () => {
 	const[todos,setTodos]=useState([]);
 
 	return (
-		<div className="container text-center w-50 text">
-			<h1 className="text-center mt-5">todo</h1>
-			<ul class="list-group">
-				<li className="list-group-item">
-					<input type="text" className="form-control  border-0" placeholder="What needs to be done?"
+		<div className="container text-center w-50 fw-light">
+			<h1 className="text-center mt-5  fw-light " >Todos</h1>
+			<ul class="list-group rounded-0 shadow-lg  mb-5 bg-body-tertiary fw-light fs-3">
+				<li className="list-group-item ">
+					<input type="text" className="form-control  border-0 fw-light fs-3" placeholder="What needs to be done?"
 					onChange={e => setInputValue(e.target.value)}
 					value={inputValue}
 					//evento para las tareas se agregen cuando el usuario presiona enter en el teclado
@@ -25,17 +25,18 @@ const Home = () => {
 					}}/>
 				</li>
 				{todos.length === 0 ? (
-					<li className="list-group-item text-center">No hay tareas, añadir tareas</li>
+					<li className="list-group-item text-center  fw-light fs-3 ">No hay tareas, añadir tareas</li>
 				) : (
 					todos.map((item, index) => (
-						<li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+						<li key={index} className="list-group-item d-flex justify-content-between align-items-center fs-2">
 							{item}
-							<i className="fas fa-trash-alt icon" onClick={()=>setTodos(todos.filter((t,currentIndex)=> index!=currentIndex))}></i>
+							<i className="fas fa-trash-alt icon" style={{color:"red"}} onClick={()=>setTodos(todos.filter((t,currentIndex)=> index!=currentIndex))}></i>
 						</li>
 					))
 				)}
+				<li className="text-start list-group-item" >{todos.length} Tasks</li>
 			</ul>
-			<div className="text-start">{todos.length} items</div>
+			
 		</div>
 	);
 };
